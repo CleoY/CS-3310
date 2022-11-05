@@ -7,7 +7,7 @@ public class matrix {
         nSizeMatrix = new int[size][size];
         for(int i=0; i<size; i++){
             for(int j=0; j<size; j++){
-                nSizeMatrix[i][j] =(int) (Math.random()*(100-1));
+                nSizeMatrix[i][j] =(int) (Math.random()*(10-1)); // can change to dif range later, after testing
             }
         }
         //saveMatrix();

@@ -21,12 +21,14 @@ public class Main{
 
 
 
-
-        matrix matrixA = new matrix(4);
-        matrix matrixB = new matrix(4);
-        matrixA.printMatrix();
-        matrixB.printMatrix();
-        multi.classicMultiplication(matrixA, matrixB);
+        for (int i=0; i<2; i++){
+            matrix matrixA = new matrix(4);
+            matrix matrixB = new matrix(4);
+            matrixA.printMatrix();
+            matrixB.printMatrix();
+            multi.classicMultiplication(matrixA, matrixB);
+        }
+        
         //matrix1.printMatrix();
     }
 }
