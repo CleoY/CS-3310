@@ -19,22 +19,16 @@ public class Main{
          */
 
         for(int i=0; i<1000; i++){
-            matrix matrixA = new matrix(4);
-            matrix matrixB = new matrix(4);
+            matrix matrixA = new matrix(128);
+            matrix matrixB = new matrix(128);
             for (int j=0; j<20; j++){
-                matrixA.printMatrix();
-                matrixB.printMatrix();
+                //matrixA.printMatrix();
+                //matrixB.printMatrix();
                 multi.classicMultiplication(matrixA, matrixB);
             }
             //System.out.println("Classic method average time for 20 runs: "+multi.getClassicAvg()+ " ms");
             // ^ Does NOT find avg for ONE dataset; finds CURRENT avg given prev datasets 
         }
         System.out.println("Classic method average time for 1000*20 runs: "+multi.getClassicAvg()+ " ms"); 
-        // matrix matrixA = new matrix(4);
-        // matrix matrixB = new matrix(4);
-        // matrixA.printMatrix();
-        // matrixB.printMatrix();
-        // multi.classicMultiplication(matrixA, matrixB);
-    
     }
 }

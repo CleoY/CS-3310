@@ -43,28 +43,46 @@ public class matrixMultiplication {
         //System.out.println("Finish :"+finish);
         double duration = finish-start;
         duration /= 1000; //time in nanoseconds since
-        System.out.println("Duration of "+duration+"ms for "+matrixA.getMatrix().length+" by "+matrixA.getMatrix().length+" matrix\n");
+        //System.out.println("Duration of "+duration+"ms for "+matrixA.getMatrix().length+" by "+matrixA.getMatrix().length+" matrix\n");
         //System.out.printf("Duration of %f for %d by %d matrix%n", duration, matrixA.length, matrixB.length);
-        printMatrix(matrixC);
+        //printMatrix(matrixC);
         classicTotalTime += duration;
         classicAvg = classicTotalTime/classicUseCount;
-        System.out.println("Current classic method average: "+classicAvg+" ms\n");
+        //System.out.println("Current classic method average: "+classicAvg+" ms\n");
     }
 
     public double getClassicAvg(){
         return classicAvg;
     }
 
+
     // divide and conquer multi
     // recursive
-    public void divideAndConquer(int[][] matrixA, int[][]matrixB){
-        
+    public void divideAndConquer(matrix matrixA, matrix matrixB){
+        int[][] matrixC = new int [matrixA.getMatrix().length][matrixA.getMatrix().length];
+        DandC_UseCount++;
+
+
     }
 
+    public double get_DandC_Avg(){
+        return DandC_Avg;
+    }
+
+
     //strassen multi
-    public void Strassen(int[][] matrixA, int[][]matrixB){
+    public void Strassen(matrix matrixA, matrix matrixB){
+        int[][] matrixC = new int [matrixA.getMatrix().length][matrixA.getMatrix().length];
+        strassenUseCount++;
+
+
+
         
     }   
+
+    public double getStrassenAvg(){
+        return strassenAvg;
+    }
 
     public void printMatrix(int [][] output){
         System.out.println("Output matrix C: ");
