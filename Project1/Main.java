@@ -18,17 +18,18 @@ public class Main{
          *      pass matrix
          */
 
-
-
-
-        for (int i=0; i<2; i++){
+        for(int i=0; i<2; i++){
             matrix matrixA = new matrix(4);
             matrix matrixB = new matrix(4);
-            matrixA.printMatrix();
-            matrixB.printMatrix();
-            multi.classicMultiplication(matrixA, matrixB);
+            for (int j=0; j<2; j++){
+                matrixA.printMatrix();
+                matrixB.printMatrix();
+                multi.classicMultiplication(matrixA, matrixB);
+            }
+            //System.out.println("Classic method average time for 20 runs: "+multi.getClassicAvg()+ " ms");
+            // ^ Does NOT find avg for ONE dataset; finds CURRENT avg given prev datasets 
         }
+        System.out.println("Classic method average time for 1000*20 runs: "+multi.getClassicAvg()+ " ms");
         
-        //matrix1.printMatrix();
     }
 }

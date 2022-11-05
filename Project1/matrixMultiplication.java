@@ -22,7 +22,7 @@ public class matrixMultiplication {
         classicUseCount++;
 
         long start = System.nanoTime();
-        System.out.println("Start :"+start);
+        //System.out.println("Start :"+start);
         // 3 for loops
         /*
          * for # of rows in matrixA (i)
@@ -40,15 +40,19 @@ public class matrixMultiplication {
         }
 
         long finish = System.nanoTime();
-        System.out.println("Finish :"+finish);
+        //System.out.println("Finish :"+finish);
         long duration = finish-start;
         duration /= 1000; //time in nanoseconds since
         System.out.println("Duration of "+duration+"ms for "+matrixA.getMatrix().length+" by "+matrixA.getMatrix().length+" matrix\n");
         //System.out.printf("Duration of %f for %d by %d matrix%n", duration, matrixA.length, matrixB.length);
-        printMatrix(matrixC);
+        //printMatrix(matrixC);
         classicTotalTime += duration;
         classicAvg = classicTotalTime/classicUseCount;
         System.out.println("Current classic method average: "+classicAvg+" ms\n");
+    }
+
+    public long getClassicAvg(){
+        return classicAvg;
     }
 
     // divide and conquer multi
