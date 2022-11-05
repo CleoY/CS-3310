@@ -42,9 +42,8 @@ public class matrixMultiplication {
         double finish = System.nanoTime();
         //System.out.println("Finish :"+finish);
         double duration = finish-start;
-        duration /= 1000; //time in nanoseconds since
+        duration /= 1000000; //time in nanoseconds since; check conversion!!!
         //System.out.println("Duration of "+duration+"ms for "+matrixA.getMatrix().length+" by "+matrixA.getMatrix().length+" matrix\n");
-        //System.out.printf("Duration of %f for %d by %d matrix%n", duration, matrixA.length, matrixB.length);
         //printMatrix(matrixC);
         classicTotalTime += duration;
         classicAvg = classicTotalTime/classicUseCount;
@@ -60,8 +59,8 @@ public class matrixMultiplication {
     // recursive
     public void divideAndConquer(matrix matrixA, matrix matrixB){
         int[][] matrixC = new int [matrixA.getMatrix().length][matrixA.getMatrix().length];
-        DandC_UseCount++;
-
+        //DandC_UseCount++;
+        System.out.println("Hello");
 
     }
 
@@ -77,7 +76,7 @@ public class matrixMultiplication {
 
 
 
-        
+
     }   
 
     public double getStrassenAvg(){
