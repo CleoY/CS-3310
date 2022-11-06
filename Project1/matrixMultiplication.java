@@ -33,12 +33,39 @@ public class matrixMultiplication {
     // Divide & conquer multiplication
     // Recursive
     public int divideAndConquer(matrix matrixA, matrix matrixB){
-        int[][] matrixC = new int [matrixA.getMatrix().length][matrixA.getMatrix().length];
-        
+        // inefficient use of space??
+        int[][] matrixC = new int [matrixA.getMatrix().length][matrixA.getMatrix().length]; // change dimensions?
+        int[][] subA_top = new int [matrixA.getMatrix().length/2][matrixA.getMatrix()[1].length];
+        int[][] subA_bottom = new int [matrixA.getMatrix().length/2][matrixA.getMatrix()[1].length];
+        int[][] subB_left = new int [matrixB.getMatrix().length][matrixB.getMatrix()[1].length/2];
+        int[][] subB_right = new int [matrixB.getMatrix().length][matrixB.getMatrix()[1].length/2];
+
         if(matrixA.getMatrix().length == 1){
             return matrixA.getMatrix()[1][1] * matrixB.getMatrix()[1][1];
         } else{
-            matrixC[1][1] = divideAndConquer(matrixA, matrixB) + divideAndConquer(matrixA, matrixB);
+            // top half of matrixA and left half of matrixB
+            for(int i=0; i<matrixA.getMatrix().length/2; i++){
+                for(int j=0; j<matrixA.getMatrix()[i].length; j++){
+                    subA_top[i][j] = matrixA.getMatrix()[i][j];
+                    subB_left[j][i] = matrixB.getMatrix()[j][i];
+                }
+            }
+
+            // bottom half matrixA and right half of matrixB
+            for(int i=matrixA.getMatrix().length/2; i<matrixA.getMatrix().length; i++){
+                for(int j=0; j<matrixA.getMatrix()[i].length; j++){
+                    subA_bottom[i][j] = matrixA.getMatrix()[i][j];
+                    subB_right[j][i] = matrixB.getMatrix()[j][i];
+                }
+            }
+
+            // what indices for C??
+            matrixC[][] = divideAndConquer(subA_top, subB_left) + divideAndConquer(subA_bottom, subB_right);
+
+            //matrixC[1][1] = divideAndConquer(matrixA, matrixB) + divideAndConquer(matrixA, matrixB);
+            // C indices = something related to curr matA length?
+            // split matrices in half and give to each D&C call
+
         }
 
         /*
