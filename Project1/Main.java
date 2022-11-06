@@ -5,9 +5,16 @@ import java.time.Duration;
 public class Main{
     public static void main(String args[]){
         double start = System.nanoTime();
-        double finish = System.nanoTime();
 
         matrixMultiplication multi = new matrixMultiplication();
+
+        double classicAvg = 0;
+        int classicUseCount = 0;
+        double classicTotalTime = 0;
+        double classicStart = 0;
+        double classicFinish = 0;
+        double classicDuration = 0;
+
         double DandC_Avg = 0;
         int DandC_UseCount = 0;
         double DandC_TotalTime = 0;
@@ -34,29 +41,38 @@ public class Main{
          *      pass matrix
          */
 
-        for(int i=0; i<10; i++){
-            matrix matrixA = new matrix(256);
-            matrix matrixB = new matrix(256);
+        for(int i=0; i<1000; i++){
+            matrix matrixA = new matrix(128);
+            matrix matrixB = new matrix(128);
             for (int j=0; j<20; j++){
                 //matrixA.printMatrix();
                 //matrixB.printMatrix();
                 
+                classicUseCount++;
+                classicStart = System.nanoTime();
                 multi.classicMultiplication(matrixA, matrixB);
+                classicFinish = System.nanoTime();
+                classicDuration = classicFinish - classicStart;
+                classicDuration /= 1000000;
+                classicTotalTime += classicDuration;
+                classicAvg = classicTotalTime/classicUseCount;
                 
-                // DandC_UseCount++;
-                // DandC_Start = System.nanoTime();
-                // multi.divideAndConquer(matrixA, matrixB);
-                // DandC_Finish = System.nanoTime();
-                // DandC_Duration = DandC_Finish - DandC_Start;
-                // DandC_Duration /= 1000000; //CHECK CONVERSION
-                // DandC_TotalTime += DandC_Duration;
-                // DandC_Avg = DandC_TotalTime/DandC_UseCount;
-
+                DandC_UseCount++;
+                DandC_Start = System.nanoTime();
+                multi.divideAndConquer(matrixA, matrixB);
+                DandC_Finish = System.nanoTime();
+                DandC_Duration = DandC_Finish - DandC_Start;
+                DandC_Duration /= 1000000; //CHECK CONVERSION
+                DandC_TotalTime += DandC_Duration;
+                DandC_Avg = DandC_TotalTime/DandC_UseCount;
             }
             //System.out.println("Classic method average time for 20 runs: "+multi.getClassicAvg()+ " ms");
             // ^ Does NOT find avg for ONE dataset; finds CURRENT avg given prev datasets 
         }
-        System.out.println("Classic method average time for 1000*20 runs: "+multi.getClassicAvg()+ " ms"); 
+        System.out.println("Classic method average time for 1000*20 runs: " + classicAvg + " ms"); 
+        System.out.println("D&C method average time for 1000*20 runs: " + DandC_Avg + " ms");
+        
+        double finish = System.nanoTime();
         double duration = finish - start;
         duration /= 1000000;
         System.out.println("Duration: "+duration+" ms");

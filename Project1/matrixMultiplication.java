@@ -2,14 +2,6 @@ package Project1;
 import java.util.concurrent.TimeUnit;
 
 public class matrixMultiplication {
-    double classicAvg = 0;
-    int classicUseCount = 0;
-    double classicTotalTime = 0;
-
-    double DandC_Avg = 0;
-    int DandC_UseCount = 0;
-    double DandC_TotalTime = 0;
-
     double strassenAvg = 0;
     int strassenUseCount = 0;
     double strassenTotalTime = 0;
@@ -19,9 +11,7 @@ public class matrixMultiplication {
     //int[][] matrixA, int[][]matrixB
     public void classicMultiplication(matrix matrixA, matrix matrixB){
         int[][] matrixC = new int [matrixA.getMatrix().length][matrixA.getMatrix().length];
-        classicUseCount++;
 
-        double start = System.nanoTime();
         //System.out.println("Start :"+start);
         // 3 for loops
         /*
@@ -38,36 +28,17 @@ public class matrixMultiplication {
                 }
             }
         }
-
-        double finish = System.nanoTime();
-        //System.out.println("Finish :"+finish);
-        double duration = finish-start;
-        duration /= 1000000; //time in nanoseconds since; check conversion!!!
-        //System.out.println("Duration of "+duration+"ms for "+matrixA.getMatrix().length+" by "+matrixA.getMatrix().length+" matrix\n");
         //printMatrix(matrixC);
-        classicTotalTime += duration;
-        classicAvg = classicTotalTime/classicUseCount;
-        //System.out.println("Current classic method average: "+classicAvg+" ms\n");
-    }
-
-    public double getClassicAvg(){
-        return classicAvg;
     }
 
 
-    // divide and conquer multi
-    // recursive
+    // Divide & conquer multiplication
+    // Recursive
     public void divideAndConquer(matrix matrixA, matrix matrixB){
         int[][] matrixC = new int [matrixA.getMatrix().length][matrixA.getMatrix().length];
-        //DandC_UseCount++;
-        System.out.println("Hello");
+        //System.out.println("Hello");
 
     }
-
-    public double get_DandC_Avg(){
-        return DandC_Avg;
-    }
-
 
     //strassen multi
     public void Strassen(matrix matrixA, matrix matrixB){
