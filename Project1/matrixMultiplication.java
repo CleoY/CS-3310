@@ -12,8 +12,6 @@ public class matrixMultiplication {
     public void classicMultiplication(matrix matrixA, matrix matrixB){
         int[][] matrixC = new int [matrixA.getMatrix().length][matrixA.getMatrix().length];
 
-        //System.out.println("Start :"+start);
-        // 3 for loops
         /*
          * for # of rows in matrixA (i)
          *      for # of cols in matrixB (will be = to row/col of both matrices) (j)
@@ -36,7 +34,22 @@ public class matrixMultiplication {
     // Recursive
     public void divideAndConquer(matrix matrixA, matrix matrixB){
         int[][] matrixC = new int [matrixA.getMatrix().length][matrixA.getMatrix().length];
-        //System.out.println("Hello");
+        
+
+        /*
+         * split into rows until length of matrixA = reached
+         * +split into columns until matrixB[i].length = reached
+         *  ** matrixA and matrixB are squares of equal size
+         * take the first row of matA and column of matB, feed the rest into the recursive call
+         * stop when mat length = 1
+         * C = each row * each column
+         * 
+         */
+
+        /*
+         * if matrixA length = 1
+         *      return C = 
+         */
 
     }
 
