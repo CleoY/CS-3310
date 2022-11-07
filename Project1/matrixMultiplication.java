@@ -61,7 +61,7 @@ public class matrixMultiplication {
 
             // what indices for C??
             matrixC[][] = divideAndConquer(subA_top, subB_left) + divideAndConquer(subA_bottom, subB_right);
-
+     
             //matrixC[1][1] = divideAndConquer(matrixA, matrixB) + divideAndConquer(matrixA, matrixB);
             // C indices = something related to curr matA length?
             // split matrices in half and give to each D&C call
