@@ -44,10 +44,10 @@ public class Main{
          *      pass matrix
          */
 
-        for(int i=0; i<1000; i++){
-            matrix matrixA = new matrix(32);
-            matrix matrixB = new matrix(32);
-            for (int j=0; j<20; j++){
+        for(int i=0; i<1; i++){
+            matrix matrixA = new matrix(2);
+            matrix matrixB = new matrix(2);
+            for (int j=0; j<1; j++){
                 //matrixA.printMatrix();
                 //matrixB.printMatrix();
                 
@@ -71,7 +71,7 @@ public class Main{
 
                 strassenUseCount++;
                 strassenStart = System.nanoTime();
-                multi.Strassen(matrixA, matrixB);
+                multi.Strassen(matrixA.getMatrix(), matrixB.getMatrix());
                 strassenFinish = System.nanoTime();
                 strassenDuration = strassenFinish - strassenStart;
                 strassenDuration /= 1000000;

@@ -25,6 +25,7 @@ public class matrixMultiplication {
     }
 
 
+
     // Divide & conquer multiplication
     // recursive
     public int[][] divideAndConquer(int[][] matrixA, int[][] matrixB){
@@ -201,14 +202,156 @@ public class matrixMultiplication {
         return intermediate;
     }
 
-    //strassen multi
-    public void Strassen(matrix matrixA, matrix matrixB){
-        int[][] matrixC = new int [matrixA.getMatrix().length][matrixA.getMatrix().length];
+
+
+    // Strassen multiplication
+    public int[][] Strassen(int[][] matrixA, int[][] matrixB){
+        int size = matrixA.length;
+        int[][] matrixC = new int [size][size];
+        
+        if(size == 1){
+
+
+
+
+
+
+        } else{
+            // Create submatrices
+            int[][] A_TL = new int [size/2][size/2];
+            int[][] A_TR = new int [size/2][size/2];
+            int[][] A_BL = new int [size/2][size/2];
+            int[][] A_BR = new int [size/2][size/2];
+            int[][] B_TL = new int [size/2][size/2];
+            int[][] B_TR = new int [size/2][size/2];
+            int[][] B_BL = new int [size/2][size/2];
+            int[][] B_BR = new int [size/2][size/2];
+
+            // Split matrixA and matrixB into submatrices
+            // Split matrixA
+            int k=0;
+            int l=0;
+            for(int i=0; i<size/2; i++){
+                for(int j=0; j<size/2; j++){
+                    A_TL[k][l] = matrixA[i][j];
+                    B_TL[k][l] = matrixB[i][j];
+                    l++;
+                    if(l==size/2){
+                        k++;
+                        l=0;
+                    }
+                    if(k==size/2){
+                        k=0;
+                    }
+                }
+            }
+            for(int i=0; i<size/2; i++){
+                for(int j=size/2; j<size; j++){
+                    A_TR[k][l] = matrixA[i][j];
+                    B_TR[k][l] = matrixB[i][j];
+                    l++;
+                    if(l==size/2){
+                        k++;
+                        l=0;
+                    }
+                    if(k==size/2){
+                        k=0;
+                    }
+                }
+            }
+            for(int i=size/2; i<size; i++){
+                for(int j=0; j<size/2; j++){
+                    A_BL[k][l] = matrixA[i][j];
+                    B_BL[k][l] = matrixB[i][j];
+                    l++;
+                    if(l==size/2){
+                        k++;
+                        l=0;
+                    }
+                    if(k==size/2){
+                        k=0;
+                    }
+                }
+            }
+            for(int i=size/2; i<size; i++){
+                for(int j=size/2; j<size; j++){
+                    A_BR[k][l] = matrixA[i][j];
+                    B_BR[k][l] = matrixB[i][j];
+                    l++;
+                    if(l==size/2){
+                        k++;
+                        l=0;
+                    }
+                    if(k==size/2){
+                        k=0;
+                    }
+                }
+            }
         
 
 
 
 
+
+
+            // Converge C quadrants
+            k=0;
+            l=0;
+            for(int i=0; i<size/2; i++){
+                for(int j=0; j<size/2; j++){
+                    matrixC[i][j] = C_TL[k][l];
+                    l++;
+                    if(l==size/2){
+                        k++;
+                        l=0;
+                    }
+                    if(k==size/2){
+                        k=0;
+                    }
+                }
+            }
+            for(int i=0; i<size/2; i++){
+                for(int j=size/2; j<size; j++){
+                    matrixC[i][j] = C_TR[k][l];
+                    l++;
+                    if(l==size/2){
+                        k++;
+                        l=0;
+                    }
+                    if(k==size/2){
+                        k=0;
+                    }
+                }
+            }
+            for(int i=size/2; i<size; i++){
+                for(int j=0; j<size/2; j++){
+                    matrixC[i][j] = C_BL[k][l];
+                    l++;
+                    if(l==size/2){
+                        k++;
+                        l=0;
+                    }
+                    if(k==size/2){
+                        k=0;
+                    }
+                }
+            }
+            for(int i=size/2; i<size; i++){
+                for(int j=size/2; j<size; j++){
+                    matrixC[i][j] = C_BR[k][l];
+                    l++;
+                    if(l==size/2){
+                        k++;
+                        l=0;
+                    }
+                    if(k==size/2){
+                        k=0;
+                    }
+                }
+            }
+        }
+
+        return matrixC;
     }   
 
     public void printMatrix(int [][] output, String msg){
