@@ -29,68 +29,78 @@ public class matrixMultiplication {
         //printMatrix(matrixC);
     }
 
-
     // Divide & conquer multiplication
-    // Recursive
-    public int divideAndConquer(matrix matrixA, matrix matrixB){
-        // inefficient use of space??
-        int[][] matrixC = new int [matrixA.getMatrix().length][matrixA.getMatrix().length]; // change dimensions?
-        int[][] subA_top = new int [matrixA.getMatrix().length/2][matrixA.getMatrix()[1].length];
-        int[][] subA_bottom = new int [matrixA.getMatrix().length/2][matrixA.getMatrix()[1].length];
-        int[][] subB_left = new int [matrixB.getMatrix().length][matrixB.getMatrix()[1].length/2];
-        int[][] subB_right = new int [matrixB.getMatrix().length][matrixB.getMatrix()[1].length/2];
+    // recursive
+    public int[][] divideAndConquer(int[][] matrixA, int[][] matrixB){
+        int size = matrixA.length;
+        int[][] matrixC = new int [size][size];
 
-        if(matrixA.getMatrix().length == 1){
-            return matrixA.getMatrix()[1][1] * matrixB.getMatrix()[1][1];
+        if(size == 1){
+            matrixC[0][0] = matrixA[0][0] * matrixB[0][0];
         } else{
-            // top half of matrixA and left half of matrixB
-            for(int i=0; i<matrixA.getMatrix().length/2; i++){
-                for(int j=0; j<matrixA.getMatrix()[i].length; j++){
-                    subA_top[i][j] = matrixA.getMatrix()[i][j];
-                    subB_left[j][i] = matrixB.getMatrix()[j][i];
-                }
-            }
+            // Submatrices
+            // A_TL = top left quadrant of matrixA     
+            // A_TR = top right quadrant of matrixA
+            // etc...   
+            int[][] A_TL = new int [size/2][size/2];
+            int[][] A_TR = new int [size/2][size/2];
+            int[][] A_BL = new int [size/2][size/2];
+            int[][] A_BR = new int [size/2][size/2];
+            int[][] B_TL = new int [size/2][size/2];
+            int[][] B_TR = new int [size/2][size/2];
+            int[][] B_BL = new int [size/2][size/2];
+            int[][] B_BR = new int [size/2][size/2];
 
-            // bottom half matrixA and right half of matrixB
-            for(int i=matrixA.getMatrix().length/2; i<matrixA.getMatrix().length; i++){
-                for(int j=0; j<matrixA.getMatrix()[i].length; j++){
-                    subA_bottom[i][j] = matrixA.getMatrix()[i][j];
-                    subB_right[j][i] = matrixB.getMatrix()[j][i];
-                }
-            }
+            // Split matrixA and matrixB into submatrices
 
-            // what indices for C??
-            matrixC[][] = divideAndConquer(subA_top, subB_left) + divideAndConquer(subA_bottom, subB_right);
-     
-            //matrixC[1][1] = divideAndConquer(matrixA, matrixB) + divideAndConquer(matrixA, matrixB);
-            // C indices = something related to curr matA length?
-            // split matrices in half and give to each D&C call
+
+
+            // Declare C quadrants
+            // int[][] C_TL = new int [size/2][size/2];
+            // int[][] C_TR = new int [size/2][size/2];
+            // int[][] C_BL = new int [size/2][size/2];
+            // int[][] C_BR = new int [size/2][size/2];
+
 
         }
 
         /*
-         * split into rows until length of matrixA = reached
-         * +split into columns until matrixB[i].length = reached
-         *  ** matrixA and matrixB are squares of equal size
-         * take the first row of matA and column of matB, feed the rest into the recursive call
-         * stop when mat length = 1
-         * C = each row * each column
+         * Base case: matrix size = 1
+         *      c[0][0] = a[0][0]*b[0][0] (only size 1x1 each)
+         * Else:
+         *      Split matrices:
+         *          Copy quadrants of each matrix to their respective submatrices
+         *      C[1,1] = A[1,1]*B[1,2] + A[1,2]*B[1,2]
+         *             = A[TL]*B[TL] + A[TR]*B[BL]
          * 
+         *      C[1,2] = A[1,1]*B[1,2] + A[1,2]*B[2,1]
+         *             = A[TL]*B[TR] + A[TR]*B[BR]
+         * 
+         *      C[2,1] = A[2,1]*B[1,1] + A[2,2]*B[2,1]
+         *             = A[BL]*B[TL] + A[BR]*B[BL]
+         * 
+         *      C[2,2] = A[2,1]*B[1,2] + A[2,2]*B[2,2]
+         *             = A[BL]*B[TR] + A[BR]*B[BR]
+         * 
+         *      Converge all C quadrants into large output matrixC
+         * 
+         * Passing each quadrant into their appropriate D&C calls
+         *   -> splitting each passed matrix into further submatrices
+         *      until matrices' sizes = all 1x1
          */
 
-        /*
-         *  split matA rows in half until only 1 row remains
-         *      AND split matB cols in half until only 1 col remains
-         *  THEN split single matA row in half until only 1 cell remains
-         *      AND split single matB col in half until only 1 cell remains
-         *  sub C = a[1]*b[1]
-         *  C = total of sub C's for a row
-         */
+        return matrixC;
+    }
 
-         /*
-          * C = D&C(matA row, matB col) + D&C(matA row, matB col)
-          */
-        return 0;
+    public int[][] addMatrices(int[][] matrixA, int[][] matrixB){
+        int[][] intermediate = new int [matrixA.length][matrixA.length];
+        int size = matrixA.length;
+        for(int i=0; i<size; i++){
+            for(int j=0; j<size; j++){
+                intermediate[i][j] = matrixA[i][j] + matrixB[i][j];
+            }
+        }
+        return intermediate;
     }
 
     //strassen multi

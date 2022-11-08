@@ -59,7 +59,7 @@ public class Main{
                 
                 DandC_UseCount++;
                 DandC_Start = System.nanoTime();
-                multi.divideAndConquer(matrixA, matrixB);
+                multi.divideAndConquer(matrixA.getMatrix(), matrixB.getMatrix());
                 DandC_Finish = System.nanoTime();
                 DandC_Duration = DandC_Finish - DandC_Start;
                 DandC_Duration /= 1000000; //CHECK CONVERSION
