@@ -146,17 +146,17 @@ public class matrixMultiplication {
             //         }
             //     }
             // }
-            System.out.println("A submatrices");
-            printMatrix(A_TL,"");
-            printMatrix(A_TR,"");
-            printMatrix(A_BL,"");
-            printMatrix(A_BR,"");
+            // System.out.println("A submatrices");
+            // printMatrix(A_TL,"");
+            // printMatrix(A_TR,"");
+            // printMatrix(A_BL,"");
+            // printMatrix(A_BR,"");
     
-            System.out.println("B submatrices");
-            printMatrix(B_TL,"");
-            printMatrix(B_TR,"");
-            printMatrix(B_BL,"");
-            printMatrix(B_BR,"");
+            // System.out.println("B submatrices");
+            // printMatrix(B_TL,"");
+            // printMatrix(B_TR,"");
+            // printMatrix(B_BL,"");
+            // printMatrix(B_BR,"");
 
 
 
@@ -182,17 +182,9 @@ public class matrixMultiplication {
             // Converge C quadrants into large matrixC output
             k=0;
             l=0;
-            for(int i=0; i<size; i++){
-                for(int j=0; j<size; j++){
-                    if(i<size/2 && j<size/2){
-                        matrixC[i][j] = C_TL[k][l];
-                    } else if(i<size/2 && j>=size/2){
-                        matrixC[i][j] = C_TR[k][l];
-                    } else if(i>=size/2 && j<size/2){
-                        matrixC[i][j] = C_BL[k][l];
-                    } else{
-                        matrixC[i][j] = C_BR[k][l];
-                    }
+            for(int i=0; i<size/2; i++){
+                for(int j=0; j<size/2; j++){
+                    matrixC[i][j] = C_TL[k][l];
                     l++;
                     if(l==size/2){
                         k++;
@@ -203,6 +195,67 @@ public class matrixMultiplication {
                     }
                 }
             }
+            for(int i=0; i<size/2; i++){
+                for(int j=size/2; j<size; j++){
+                    matrixC[i][j] = C_TR[k][l];
+                    l++;
+                    if(l==size/2){
+                        k++;
+                        l=0;
+                    }
+                    if(k==size/2){
+                        k=0;
+                    }
+                }
+            }
+            for(int i=size/2; i<size; i++){
+                for(int j=0; j<size/2; j++){
+                    matrixC[i][j] = C_BL[k][l];
+                    l++;
+                    if(l==size/2){
+                        k++;
+                        l=0;
+                    }
+                    if(k==size/2){
+                        k=0;
+                    }
+                }
+            }
+            for(int i=size/2; i<size; i++){
+                for(int j=size/2; j<size; j++){
+                    matrixC[i][j] = C_BR[k][l];
+                    l++;
+                    if(l==size/2){
+                        k++;
+                        l=0;
+                    }
+                    if(k==size/2){
+                        k=0;
+                    }
+                }
+            }
+
+            // for(int i=0; i<size; i++){
+            //     for(int j=0; j<size; j++){
+            //         if(i<size/2 && j<size/2){
+            //             matrixC[i][j] = C_TL[k][l];
+            //         } else if(i<size/2 && j>=size/2){
+            //             matrixC[i][j] = C_TR[k][l];
+            //         } else if(i>=size/2 && j<size/2){
+            //             matrixC[i][j] = C_BL[k][l];
+            //         } else{
+            //             matrixC[i][j] = C_BR[k][l];
+            //         }
+            //         l++;
+            //         if(l==size/2){
+            //             k++;
+            //             l=0;
+            //         }
+            //         if(k==size/2){
+            //             k=0;
+            //         }
+            //     }
+            // }
 
         }
 
