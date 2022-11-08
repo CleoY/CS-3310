@@ -26,8 +26,9 @@ public class matrixMultiplication {
                 }
             }
         }
-        //printMatrix(matrixC);
+        printMatrix(matrixC, "Classic multiplication result: ");
     }
+
 
     // Divide & conquer multiplication
     // recursive
@@ -52,15 +53,91 @@ public class matrixMultiplication {
             int[][] B_BR = new int [size/2][size/2];
 
             // Split matrixA and matrixB into submatrices
+            // Split matrixA
+            int k = 0;
+            int l = 0;
+            for(int i=0; i<size; i++){
+                for(int j=0; j<size; j++){
+                    if(i<size/2 && j<size/2){
+                        A_TL[k][l] = matrixA[i][j];
+                        B_TL[k][l] = matrixB[i][j];
+                    } else if(i<size/2 && j>=size/2){
+                        A_TR[k][l] = matrixA[i][j];
+                        B_TR[k][l] = matrixB[i][j];
+                    } else if(i>=size/2 && j<size/2){
+                        A_BL[k][l] = matrixA[i][j];
+                        B_BL[k][l] = matrixB[i][j];
+                    } else{
+                        A_BR[k][l] = matrixA[i][j];
+                        B_BR[k][l] = matrixB[i][j];
+                    }
+                    l++;
+                    if(l==size/2){
+                        k++;
+                        l=0;
+                    }
+                    if(k==size/2){
+                        k=0;
+                    }
+                }
+            }
+            System.out.println("A submatrices");
+            printMatrix(A_TL,"");
+            printMatrix(A_TR,"");
+            printMatrix(A_BL,"");
+            printMatrix(A_BR,"");
+    
+            System.out.println("B submatrices");
+            printMatrix(B_TL,"");
+            printMatrix(B_TR,"");
+            printMatrix(B_BL,"");
+            printMatrix(B_BR,"");
 
 
 
-            // Declare C quadrants
-            // int[][] C_TL = new int [size/2][size/2];
-            // int[][] C_TR = new int [size/2][size/2];
-            // int[][] C_BL = new int [size/2][size/2];
-            // int[][] C_BR = new int [size/2][size/2];
 
+            // C quadrants
+            // C[1,1] = A[1,1]*B[1,2] + A[1,2]*B[1,2]
+            //        = A[TL]*B[TL] + A[TR]*B[BL]
+            int[][] C_TL = addMatrices(divideAndConquer(A_TL, B_TL), divideAndConquer(A_TR, B_BL));
+            
+            // C[1,2] = A[1,1]*B[1,2] + A[1,2]*B[2,1]
+            //        = A[TL]*B[TR] + A[TR]*B[BR]
+            int[][] C_TR = addMatrices(divideAndConquer(A_TL, B_TR), divideAndConquer(A_TR, B_BR));
+
+            // C[2,1] = A[2,1]*B[1,1] + A[2,2]*B[2,1]
+            //        = A[BL]*B[TL] + A[BR]*B[BL]
+            int[][] C_BL = addMatrices(divideAndConquer(A_BL, B_TL), divideAndConquer(A_BR, B_BL));
+
+            // C[2,2] = A[2,1]*B[1,2] + A[2,2]*B[2,2]
+            //        = A[BL]*B[TR] + A[BR]*B[BR]
+            int[][] C_BR = addMatrices(divideAndConquer(A_BL, B_TR), divideAndConquer(A_BR, B_BR));
+
+
+            // Converge C quadrants into large matrixC output
+            k=0;
+            l=0;
+            for(int i=0; i<size; i++){
+                for(int j=0; j<size; j++){
+                    if(i<size/2 && j<size/2){
+                        matrixC[i][j] = C_TL[k][l];
+                    } else if(i<size/2 && j>=size/2){
+                        matrixC[i][j] = C_TR[k][l];
+                    } else if(i>=size/2 && j<size/2){
+                        matrixC[i][j] = C_BL[k][l];
+                    } else{
+                        matrixC[i][j] = C_BR[k][l];
+                    }
+                    l++;
+                    if(l==size/2){
+                        k++;
+                        l=0;
+                    }
+                    if(k==size/2){
+                        k=0;
+                    }
+                }
+            }
 
         }
 
@@ -89,6 +166,11 @@ public class matrixMultiplication {
          *      until matrices' sizes = all 1x1
          */
 
+        // Declare C quadrants
+            // int[][] C_TL = new int [size/2][size/2];
+            // int[][] C_TR = new int [size/2][size/2];
+            // int[][] C_BL = new int [size/2][size/2];
+            // int[][] C_BR = new int [size/2][size/2];
         return matrixC;
     }
 
@@ -117,8 +199,8 @@ public class matrixMultiplication {
         return strassenAvg;
     }
 
-    public void printMatrix(int [][] output){
-        System.out.println("Output matrix C: ");
+    public void printMatrix(int [][] output, String msg){
+        System.out.println(msg);
         for(int i=0; i<output.length; i++){
             for(int j=0; j<output[i].length; j++){
                 System.out.print(output[i][j]+" ");

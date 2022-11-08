@@ -41,12 +41,12 @@ public class Main{
          *      pass matrix
          */
 
-        for(int i=0; i<1000; i++){
-            matrix matrixA = new matrix(128);
-            matrix matrixB = new matrix(128);
-            for (int j=0; j<20; j++){
-                //matrixA.printMatrix();
-                //matrixB.printMatrix();
+        for(int i=0; i<1; i++){
+            matrix matrixA = new matrix(4);
+            matrix matrixB = new matrix(4);
+            for (int j=0; j<1; j++){
+                matrixA.printMatrix();
+                matrixB.printMatrix();
                 
                 classicUseCount++;
                 classicStart = System.nanoTime();
@@ -59,7 +59,7 @@ public class Main{
                 
                 DandC_UseCount++;
                 DandC_Start = System.nanoTime();
-                multi.divideAndConquer(matrixA.getMatrix(), matrixB.getMatrix());
+                multi.printMatrix(multi.divideAndConquer(matrixA.getMatrix(), matrixB.getMatrix()), "D&C result: ");
                 DandC_Finish = System.nanoTime();
                 DandC_Duration = DandC_Finish - DandC_Start;
                 DandC_Duration /= 1000000; //CHECK CONVERSION
