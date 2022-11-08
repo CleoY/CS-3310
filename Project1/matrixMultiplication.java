@@ -52,25 +52,15 @@ public class matrixMultiplication {
             int[][] B_BL = new int [size/2][size/2];
             int[][] B_BR = new int [size/2][size/2];
 
+            
             // Split matrixA and matrixB into submatrices
             // Split matrixA
-            int k = 0;
-            int l = 0;
-            for(int i=0; i<size; i++){
-                for(int j=0; j<size; j++){
-                    if(i<size/2 && j<size/2){
-                        A_TL[k][l] = matrixA[i][j];
-                        B_TL[k][l] = matrixB[i][j];
-                    } else if(i<size/2 && j>=size/2){
-                        A_TR[k][l] = matrixA[i][j];
-                        B_TR[k][l] = matrixB[i][j];
-                    } else if(i>=size/2 && j<size/2){
-                        A_BL[k][l] = matrixA[i][j];
-                        B_BL[k][l] = matrixB[i][j];
-                    } else{
-                        A_BR[k][l] = matrixA[i][j];
-                        B_BR[k][l] = matrixB[i][j];
-                    }
+            int k=0;
+            int l=0;
+            for(int i=0; i<size/2; i++){
+                for(int j=0; j<size/2; j++){
+                    A_TL[k][l] = matrixA[i][j];
+                    B_TL[k][l] = matrixB[i][j];
                     l++;
                     if(l==size/2){
                         k++;
@@ -81,6 +71,81 @@ public class matrixMultiplication {
                     }
                 }
             }
+
+            for(int i=0; i<size/2; i++){
+                for(int j=size/2; j<size; j++){
+                    A_TR[k][l] = matrixA[i][j];
+                    B_TR[k][l] = matrixB[i][j];
+                    l++;
+                    if(l==size/2){
+                        k++;
+                        l=0;
+                    }
+                    if(k==size/2){
+                        k=0;
+                    }
+                }
+            }
+            
+            for(int i=size/2; i<size; i++){
+                for(int j=0; j<size/2; j++){
+                    A_BL[k][l] = matrixA[i][j];
+                    B_BL[k][l] = matrixB[i][j];
+                    l++;
+                    if(l==size/2){
+                        k++;
+                        l=0;
+                    }
+                    if(k==size/2){
+                        k=0;
+                    }
+                }
+            }
+
+            for(int i=size/2; i<size; i++){
+                for(int j=size/2; j<size; j++){
+                    A_BR[k][l] = matrixA[i][j];
+                    B_BR[k][l] = matrixB[i][j];
+                    l++;
+                    if(l==size/2){
+                        k++;
+                        l=0;
+                    }
+                    if(k==size/2){
+                        k=0;
+                    }
+                }
+            }
+            
+            
+            // int k = 0;
+            // int l = 0;
+            // for(int i=0; i<size; i++){ ///
+            //     for(int j=0; j<size; j++){ ///
+            //         //System.out.println("k = "+k+", l = "+l);
+            //         if(i<size/2 && j<size/2){
+            //             A_TL[k][l] = matrixA[i][j];
+            //             B_TL[k][l] = matrixB[i][j];
+            //         } else if(i<size/2 && j>=size/2){
+            //             A_TR[k][l] = matrixA[i][j];
+            //             B_TR[k][l] = matrixB[i][j];
+            //         } else if(i>=size/2 && j<size/2){
+            //             A_BL[k][l] = matrixA[i][j];
+            //             B_BL[k][l] = matrixB[i][j];
+            //         } else{
+            //             A_BR[k][l] = matrixA[i][j];
+            //             B_BR[k][l] = matrixB[i][j];
+            //         }
+            //         l++;
+            //         if(l==size/2){
+            //             k++;
+            //             l=0;
+            //         }
+            //         if(k==size/2){
+            //             k=0;
+            //         }
+            //     }
+            // }
             System.out.println("A submatrices");
             printMatrix(A_TL,"");
             printMatrix(A_TR,"");
