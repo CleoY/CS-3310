@@ -7,13 +7,6 @@ public class matrixMultiplication {
     public void classicMultiplication(matrix matrixA, matrix matrixB){
         int[][] matrixC = new int [matrixA.getMatrix().length][matrixA.getMatrix().length];
 
-        /*
-         * for # of rows in matrixA (i)
-         *      for # of cols in matrixB (will be = to row/col of both matrices) (j)
-         *          for each cell in the row in matrixA (k)
-         *              c(i,j) += a(i,k) * b(j, k)
-         */
-
         for(int i=0; i<matrixA.getMatrix().length; i++){
             for(int j=0; j<matrixB.getMatrix().length; j++){
                 for(int k=0; k<matrixA.getMatrix()[i].length; k++){
@@ -21,7 +14,6 @@ public class matrixMultiplication {
                 }
             }
         }
-        //printMatrix(matrixC, "Classic multiplication result: ");
     }
 
 
@@ -50,7 +42,6 @@ public class matrixMultiplication {
 
             
             // Split matrixA and matrixB into submatrices
-            // Split matrixA
             int k=0;
             int l=0;
             for(int i=0; i<size/2; i++){

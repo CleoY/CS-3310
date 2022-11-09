@@ -29,25 +29,12 @@ public class Main{
         double strassenFinish = 0;
         double strassenDuration = 0;
 
-        // set size=n; 1 n size at a time for the sake of avoiding
-        // overworking comp + ease of finding data
-        // consider saving findings to a csv file for easy graphical analysis
-        /**
-         * for 1000
-         *      generate new random matrices x2
-         *      for 20
-         *          pass matrix into classic method
-         *          pass matrix into divide-and-conquer method
-         *          pass matrix into Strassen method
-         *          * from each method, calculate completion time
-         *          ** also print each output matrix? or store in another Matrix class?
-         *      pass matrix
-         */
 
-        for(int i=0; i<10; i++){
-            matrix matrixA = new matrix(512);
-            matrix matrixB = new matrix(512);
-            for (int j=0; j<5; j++){
+        // Change "size" in matrixA and matrixB calls each time you want to test a matrix of a different size
+        for(int i=0; i<1000; i++){
+            matrix matrixA = new matrix(2);
+            matrix matrixB = new matrix(2);
+            for (int j=0; j<20; j++){
                 //matrixA.printMatrix();
                 //matrixB.printMatrix();
                 
