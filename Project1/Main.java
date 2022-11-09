@@ -44,12 +44,12 @@ public class Main{
          *      pass matrix
          */
 
-        for(int i=0; i<1; i++){
-            matrix matrixA = new matrix(4);
-            matrix matrixB = new matrix(4);
-            for (int j=0; j<1; j++){
-                matrixA.printMatrix();
-                matrixB.printMatrix();
+        for(int i=0; i<100; i++){
+            matrix matrixA = new matrix(32);
+            matrix matrixB = new matrix(32);
+            for (int j=0; j<10; j++){
+                //matrixA.printMatrix();
+                //matrixB.printMatrix();
                 
                 classicUseCount++;
                 classicStart = System.nanoTime();
@@ -71,7 +71,7 @@ public class Main{
 
                 strassenUseCount++;
                 strassenStart = System.nanoTime();
-                multi.printMatrix(multi.strassen(matrixA.getMatrix(), matrixB.getMatrix()), "Strassen: ");
+                multi.strassen(matrixA.getMatrix(), matrixB.getMatrix());
                 strassenFinish = System.nanoTime();
                 strassenDuration = strassenFinish - strassenStart;
                 strassenDuration /= 1000000;
@@ -79,8 +79,6 @@ public class Main{
                 strassenAvg = strassenTotalTime/strassenUseCount;
                 
             }
-            //System.out.println("Classic method average time for 20 runs: "+multi.getClassicAvg()+ " ms");
-            // ^ Does NOT find avg for ONE dataset; finds CURRENT avg given prev datasets 
         }
         System.out.println("Classic method average time for 1000*20 runs: " + classicAvg + " ms"); 
         System.out.println("D&C method average time for 1000*20 runs: " + DandC_Avg + " ms");

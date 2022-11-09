@@ -21,7 +21,7 @@ public class matrixMultiplication {
                 }
             }
         }
-        printMatrix(matrixC, "Classic multiplication result: ");
+        //printMatrix(matrixC, "Classic multiplication result: ");
     }
 
 
@@ -311,7 +311,6 @@ public class matrixMultiplication {
         
             // C[1,1] = P + S - T + V
             int[][] C_TL = addOrSubMatrices(addOrSubMatrices(addOrSubMatrices(P, S, 1), T, 2), V, 1);
-            //int[][] C_TL = addOrSubMatrices(addOrSubMatrices(P,S, 1), addOrSubMatrices(T, V, 1), 2);
 
             // C[1,2] = R + T
             int[][] C_TR = addOrSubMatrices(R, T, 1);
@@ -321,7 +320,6 @@ public class matrixMultiplication {
 
             // C[2,2] = P + R - Q + U
             int[][] C_BR = addOrSubMatrices(addOrSubMatrices(addOrSubMatrices(P, R, 1), Q, 2), U, 1);
-            //int[][] C_BR = addOrSubMatrices(addOrSubMatrices(P, R, 1), addOrSubMatrices(Q, U, 1), 2);
 
 
             // Converge C quadrants
