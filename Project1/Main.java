@@ -44,10 +44,10 @@ public class Main{
          *      pass matrix
          */
 
-        for(int i=0; i<100; i++){
-            matrix matrixA = new matrix(32);
-            matrix matrixB = new matrix(32);
-            for (int j=0; j<10; j++){
+        for(int i=0; i<10; i++){
+            matrix matrixA = new matrix(512);
+            matrix matrixB = new matrix(512);
+            for (int j=0; j<5; j++){
                 //matrixA.printMatrix();
                 //matrixB.printMatrix();
                 
