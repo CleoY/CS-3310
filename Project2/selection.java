@@ -5,20 +5,20 @@ public class selection {
 
     // Make sure to place results in a CSV file for easy data analysis?
 
-    public void mergeSort(randomList givenList){
-
+    public int mergeSort(randomList givenList, int k){
+        return 0;
     }
 
-    public void iterativeQuickSort(){
-
+    public int iterativeQuickSort(randomList givenList, int k){
+        return 0;
     }
 
-    public void recursiveQuickSort(){
-
+    public int recursiveQuickSort(randomList givenList, int k){
+        return 0;
     }
 
-    public void medianOfMedians(){
-
+    public int medianOfMedians(randomList givenList, int k){
+        return 0;
     }
 
     public void printList(double[] given, String msg){
