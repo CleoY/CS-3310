@@ -1,12 +1,19 @@
 package Project2;
+import java.util.ArrayList;
 
 public class main {
     public static void main(String args[]){
         double start = System.nanoTime();
+        ArrayList<Integer> tempList = new ArrayList<Integer>();
 
         selection select = new selection();
         randomList list1 = new randomList(10);
-        select.mergeSort(list1,3);
+        list1.printList();
+        tempList = select.recursiveQuickSort(list1.getList());
+        select.printList(tempList, "Merge sorted list");
+        select.selectKthSmallest(tempList);
+
+        //select.mergeSort(list1,3);
 
         /*
         double mergeAvg = 0.0;
