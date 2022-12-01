@@ -2,28 +2,34 @@ package Project2;
 import java.util.ArrayList;
 
 public class selection {
-    //int k;
-
     // Make sure to place results in a CSV file for easy data analysis?
 
-    // public void setK(int given){
-    //     k = given;
-    // }
-
-    public int mergeSort(randomList givenList){
-        return 0;
-    }
-
-    public int iterativeQuickSort(randomList givenList){
-        return 0;
+    public void mergeSort(ArrayList<Integer> givenList, int k){
+        // selectKthSmallest();
     }
 
 
 
-    public void mergeSortSelect(ArrayList<Integer> givenList, int k){
+    public void iterativeQuickSortSelect(ArrayList<Integer> givenList, int k){
+        /*
+         * pick a pivot (first, last, or middle elem)
+         *      if val > pivot
+         *          val -> list of larger values
+         *      if val <= pivot 
+         *          val -> list of smaller values
+         *  repeat until sublist lengths = 1
+         *  merge all sublists today
+        */
+        
+        // selectKthSmallest(); k-1
+    }
+
+
+
+    public void recurQuickSortSelect(ArrayList<Integer> givenList, int k){
         ArrayList<Integer> orderedList = recursiveQuickSort(givenList);
-        printList(orderedList, "Merge sorted list: ");
-        selectKthSmallest(orderedList, k);
+        printList(orderedList, "Recursive quick sorted list: ");
+        selectKthSmallest(orderedList, k-1);
     }
 
     public ArrayList<Integer> recursiveQuickSort(ArrayList<Integer> givenList){
@@ -65,15 +71,20 @@ public class selection {
         return orderedList;
     }
 
-    public int medianOfMedians(randomList givenList){
-        return 0;
+
+
+    public void medianOfMedians(ArrayList<Integer> givenList, int k){
+        // selectKthSmallest();
     }
+
+
 
     public void selectKthSmallest(ArrayList<Integer> orderedList, int k){
         int kth_smallest = orderedList.get(k);
-        System.out.println("Kth (" + k + "th) smallest element: "+ kth_smallest);
+        System.out.println("Kth (" + (k+1) + "th) smallest element: "+ kth_smallest);
         //return kth_smallest; //////// Can change return type to void
     }
+
 
     public void printList(ArrayList<Integer> given, String msg){
         System.out.println(msg);

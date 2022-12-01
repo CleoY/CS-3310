@@ -9,7 +9,7 @@ public class main {
         selection select = new selection();
         randomList list1 = new randomList(10);
         list1.printList();
-        select.mergeSortSelect(list1.getList(), 0);
+        select.recurQuickSortSelect(list1.getList(), 1);
 
         //select.mergeSort(list1,3);
 
