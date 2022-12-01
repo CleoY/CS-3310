@@ -9,9 +9,7 @@ public class main {
         selection select = new selection();
         randomList list1 = new randomList(10);
         list1.printList();
-        tempList = select.recursiveQuickSort(list1.getList());
-        select.printList(tempList, "Merge sorted list");
-        select.selectKthSmallest(tempList);
+        select.mergeSortSelect(list1.getList(), 0);
 
         //select.mergeSort(list1,3);
 

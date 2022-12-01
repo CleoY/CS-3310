@@ -18,8 +18,11 @@ public class selection {
         return 0;
     }
 
+
+
     public void mergeSortSelect(ArrayList<Integer> givenList, int k){
         ArrayList<Integer> orderedList = recursiveQuickSort(givenList);
+        printList(orderedList, "Merge sorted list: ");
         selectKthSmallest(orderedList, k);
     }
 
@@ -68,7 +71,7 @@ public class selection {
 
     public void selectKthSmallest(ArrayList<Integer> orderedList, int k){
         int kth_smallest = orderedList.get(k);
-        System.out.println("Kth smallest element: "+kth_smallest);
+        System.out.println("Kth (" + k + "th) smallest element: "+ kth_smallest);
         //return kth_smallest; //////// Can change return type to void
     }
 
