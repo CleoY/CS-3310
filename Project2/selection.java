@@ -1,6 +1,8 @@
 package Project2;
 import java.util.ArrayList;
 
+import javax.sound.midi.SysexMessage;
+
 public class selection {
     // Make sure to place results in a CSV file for easy data analysis?
 
@@ -11,6 +13,11 @@ public class selection {
 
 
     public void iterativeQuickSortSelect(ArrayList<Integer> givenList, int k){
+        int pivot;
+        ArrayList<Integer> orderedList = new ArrayList<>(givenList.size());
+        ArrayList<Integer> smallerValues = new ArrayList<>(givenList.size()/2+1);
+        ArrayList<Integer> largerValues = new ArrayList<>(givenList.size()/2+1);
+       
         /*
          * pick a pivot (first, last, or middle elem)
          *      if val > pivot
@@ -20,17 +27,86 @@ public class selection {
          *  repeat until sublist lengths = 1
          *  merge all sublists today
         */
+
         
         // selectKthSmallest(); k-1
     }
 
 
 
-    public void recurQuickSortSelect(ArrayList<Integer> givenList, int k){
-        ArrayList<Integer> orderedList = recursiveQuickSort(givenList);
-        printList(orderedList, "Recursive quick sorted list: ");
-        selectKthSmallest(orderedList, k-1);
+    // public void recurQuickSortSelect(ArrayList<Integer> givenList, int k){
+    //     ArrayList<Integer> orderedList = recursiveQuickSort(givenList);
+    //     printList(orderedList, "Recursive quick sorted list: ");
+    //     selectKthSmallest(orderedList, k-1);
+    // }
+
+    public void recursiveQuickSortSelect(ArrayList<Integer> givenList, int k){
+        int pivot;
+        ArrayList<Integer> smallerValues = new ArrayList<>(givenList.size()/2+1);
+        ArrayList<Integer> largerValues = new ArrayList<>(givenList.size()/2+1);
+        
+        // pivot = first element = kth smallest at the base case
+        if(k==1 && givenList.size()==1){
+            System.out.println("Kth smallest element: " + givenList.get(0));
+        } else{
+            pivot = givenList.get(0); // pivot = first element
+            // sort values into list of smaller values and list of larger values
+            for(int i=1; i<givenList.size(); i++){
+                if(givenList.get(i) > pivot){
+                    largerValues.add(givenList.get(i));
+                } else{
+                    smallerValues.add(givenList.get(i));
+                }
+            }
+            smallerValues.trimToSize();
+            largerValues.trimToSize();
+            printList(smallerValues, "Smaller value list: ");
+            printList(largerValues, "Larger value list: ");
+            System.out.println("K: "+k);
+            if(k==1 && smallerValues.size()==0){ // k is the first elem = pivot
+                System.out.println("Kth smallest element: " + pivot);
+            } 
+            // need to consider when k = n and the largest list is 0 so pivot = "last" elem in sublist
+            else if(k==givenList.size() && largerValues.size()==0){
+                System.out.println("Kth smallest element: " + pivot);
+            }
+            else if(k>smallerValues.size()){ // k is in list of larger values
+                System.out.println("K-size-1: "+(k-smallerValues.size()-1));
+                System.out.println("Focus on larger values");
+                recursiveQuickSortSelect(largerValues, k-smallerValues.size()-1);
+                // scale k to a position relative to larger value list
+            } else{ // k is in list of smaller values
+                System.out.println("Focus on larger values");
+                recursiveQuickSortSelect(smallerValues, k);
+            }
+        }
+
+        /* *** k -> k - 1 since base of k is 1 ??? (NO)
+            * Choose pivot (first, last, or middle elem)
+            * Split array into 2 parts
+            *      if val > pivot
+            *          val -> list of larger values
+            *      if val <= pivot 
+            *          val -> list of smaller values
+            * NEED TO RECONSIDER SHIFTING OF K SINCE PIVOT MIGHT = K
+            *   AND CURR IMPL IGNORES K AS PIVOT EXCEPT WHEN (K=1=pivot or K=n=pivot)
+            * 
+            *
+            *
+            *
+
+            * need to find size of smaller value list and size of large value list
+            * if k > smaller value size -> focus on larger value list
+            *      k - size -1 (k is base 1 so 4th position can = size of 4)
+            * else -> focus on smaller value list
+            *      k does not change
+            * selected list and k -> recursive call
+            * base case: k=1 and size = 1
+            *      print kth smallest value or return it
+            * 
+            */
     }
+
 
     public ArrayList<Integer> recursiveQuickSort(ArrayList<Integer> givenList){
         int pivot;
