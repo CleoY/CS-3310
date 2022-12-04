@@ -24,8 +24,9 @@ public class selection {
          *          val -> list of larger values
          *      if val <= pivot 
          *          val -> list of smaller values
-         *  repeat until sublist lengths = 1
-         *  merge all sublists today
+         * Change first, last, pivot(?) and k indices
+         *      for loop to repeat until base cases reached
+         * 
         */
 
         
@@ -66,7 +67,7 @@ public class selection {
             if(k==1 && smallerValues.size()==0){ // k is the first elem = pivot
                 System.out.println("Kth smallest element: " + pivot);
             } 
-            // need to consider when k = n and the largest list is 0 so pivot = "last" elem in sublist
+            // need to consider when k = n and the largest list is 0 so pivot = "last" elem in smaller value sublist
             else if(k==givenList.size() && largerValues.size()==0){
                 System.out.println("Kth smallest element: " + pivot);
             }
@@ -81,7 +82,7 @@ public class selection {
             }
         }
 
-        /* *** k -> k - 1 since base of k is 1 ??? (NO)
+        /*
             * Choose pivot (first, last, or middle elem)
             * Split array into 2 parts
             *      if val > pivot
@@ -90,8 +91,13 @@ public class selection {
             *          val -> list of smaller values
             * NEED TO RECONSIDER SHIFTING OF K SINCE PIVOT MIGHT = K
             *   AND CURR IMPL IGNORES K AS PIVOT EXCEPT WHEN (K=1=pivot or K=n=pivot)
-            * 
-            *
+            * if k=n/2, then the size of smallerValues (n/2 OR n/2 - 1) = largerValues(n/2 OR n/2 - 1)
+            *       if n = odd, sizes will be equal
+            *       if n = even, one list will be +1 longer than the other
+            *   
+            * if k=1, then k=pivot, smallerValues size = 0 and largervalues = n-1
+            * if k=n, then k=pivot, smallerValues size = n-1 and largerValues = 0
+            * if k=n/4, then smallerValues size = n/4 (n/4-1?) and largerValues size = 3n/4 (or 3n/4-1?)
             *
             *
 
