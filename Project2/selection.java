@@ -15,10 +15,66 @@ public class selection {
 
     public void iterativeQuickSortSelect(ArrayList<Integer> givenList, int k){
         int pivot;
-        ArrayList<Integer> orderedList = new ArrayList<>(givenList.size());
-        ArrayList<Integer> smallerValues = new ArrayList<>(givenList.size()/2+1);
-        ArrayList<Integer> largerValues = new ArrayList<>(givenList.size()/2+1);
-       
+        int pivotIndex;
+        int givenSize = givenList.size();
+        int givenListStart = 0;
+
+        ArrayList<Integer> smallerValues;
+        ArrayList<Integer> largerValues;
+        int smallerValuesStart = 0;
+        int smallerValuesEnd;
+        int smallerValuesSize = givenSize/2 + 1;
+        int largerValuesStart = 0;
+        int largerValuesEnd;
+        int largerValuesSize = givenSize/2 + 1;
+
+        boolean k_found = false;
+
+        while(!k_found){
+            // pivot = first element (which changes if the next sublist to focus on is full of smaller or larger values)
+            pivot = givenList.get(0);
+            if (k==1 && givenList.size() == 1){
+                System.out.println("Kth smallest element: " + pivot);
+                k_found = true;
+                break;
+            }
+
+            smallerValues = new ArrayList<>();
+            largerValues = new ArrayList<>();
+            
+            // sort values into list of smaller values and list of larger values
+            for(int i=1; i<givenList.size(); i++){
+                if(givenList.get(i) > pivot){
+                    largerValues.add(givenList.get(i));
+                } else{
+                    smallerValues.add(givenList.get(i));
+                }
+            }
+            smallerValues.trimToSize();
+            largerValues.trimToSize();
+            printList(smallerValues, "Smaller value list: ");
+            printList(largerValues, "Larger value list: ");
+            System.out.println("K: "+k);
+            pivotIndex = smallerValues.size() + 1;
+            
+            if(pivotIndex == k){
+                System.out.println("Kth smallest element: " + pivot);
+                k_found = true;
+                break;
+            } else if(k>smallerValues.size()){ // k is in list of larger values
+                System.out.println("K-size-1: "+(k-smallerValues.size()-1));
+                System.out.println("Focus on larger values");
+                k = k-smallerValues.size()-1;
+                givenList = largerValues;
+                // scale k to a position relative to larger value list
+            } else{ // k is in list of smaller values
+                System.out.println("Focus on larger values");
+                // k does not change
+                givenList = smallerValues;
+            }
+        }
+
+        
         /*
          * pick a pivot (first, last, or middle elem)
          *      if val > pivot
