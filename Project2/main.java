@@ -9,9 +9,13 @@ public class main {
         selection select = new selection();
         randomList list1 = new randomList(10);
         list1.printList();
+
+        System.out.println("Recursive quick sort: ");
         select.recursiveQuickSortSelect(list1.getList(), 10);
+        System.out.println("Iterative quick sort: ");
         select.iterativeQuickSortSelect(list1.getList(), 10);
-        //select.mergeSort(list1,3);
+        System.out.println("Merge sort: ");
+        select.mergeSortSelect(list1.getList(),1);
 
         /*
         double mergeAvg = 0.0;
@@ -65,8 +69,7 @@ public class main {
                 // Run iterative quick sort algorithm
                 iterQuickUseCount++;
                 iterQuickStart = System.nanoTime();
-                select.iterativeQuickSort(list1, k);
-                // kth_smallest = select.iterQuickSort(list1, k); // for printing
+                select.iterativeQuickSort(list1.getList(), k);
                 iterQuickFinish = System.nanoTime();
                 iterQuickDuration = (iterQuickFinish - iterQuickStart) / 1000000;;
                 iterQuickTotalTime += iterQuickDuration;
@@ -75,8 +78,7 @@ public class main {
                 // Run recursive quick sort algorithm
                 recurQuickUseCount++;
                 recurQuickStart = System.nanoTime();
-                select.recursiveQuickSort(list1, k);
-                // kth_smallest = select.recurQuickSort(list1, k); // for printing
+                select.recursiveQuickSort(list1.getList(), k);
                 recurQuickFinish = System.nanoTime();
                 recurQuickDuration = (recurQuickFinish - recurQuickStart) / 1000000;;
                 recurQuickTotalTime += recurQuickDuration;
