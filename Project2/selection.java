@@ -184,28 +184,20 @@ public class selection {
             System.out.println("Kth smallest element: " + givenList.get(0) + "\n");
             return givenList.get(0);
         } else{
-            int avoid;
             if(p>-1){
                 //System.out.println("NOT -1");
                 pivot = givenList.get(p);
-                avoid = p;
             } else{
-                //pivot = givenList.get(medianOfMedians(givenList));
-                //pivot = medianOfMedians(givenList);
-                avoid = medianOfMedians(givenList);
-                pivot = givenList.get(avoid);
+                pivot = medianOfMedians(givenList);
                 System.out.println("MM pivot: "+pivot);
             }
             //pivot = givenList.get(0); // pivot = first element
             // sort values into list of smaller values and list of larger values
-            
-            for(int i=0; i<givenList.size(); i++){
-                if(i!=avoid){
-                    if(givenList.get(i) > pivot){
-                        largerValues.add(givenList.get(i));
-                    } else{
-                        smallerValues.add(givenList.get(i));
-                    }
+            for(int i=1; i<givenList.size(); i++){
+                if(givenList.get(i) > pivot){
+                    largerValues.add(givenList.get(i));
+                } else{
+                    smallerValues.add(givenList.get(i));
                 }
             }
             smallerValues.trimToSize();
@@ -270,14 +262,7 @@ public class selection {
         printList(medians, "BIG medians");
         int temp = findMedian(medians, mediansMidIndex); //actual mm but not INDEX of mm in givenList
         System.out.println("Find BIG median return: "+temp);
-        int w=0;
-        for(; w<givenList.size(); w++){
-            if(givenList.get(w)==temp){
-                break;
-            }
-        }
-        return w;
-        //return -2;
+        return temp;
         //return findMedian(medians, mediansMidIndex);
     }
 
