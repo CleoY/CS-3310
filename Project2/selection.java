@@ -5,7 +5,56 @@ import javax.sound.midi.SysexMessage;
 
 public class selection {
     // Make sure to place results in a CSV file for easy data analysis?
+    
+    
+    public void mergeSortSelect(ArrayList<Integer> givenList, int k){
+        ArrayList<Integer> orderedList = mergeSort(givenList);
+        //printList(orderedList, "Merge sorted list: ");
+        //selectKthSmallest(orderedList, k-1);
+    }
+    
+    public ArrayList<Integer> mergeSort(ArrayList<Integer> givenList){
+        int pivot;
+        ArrayList<Integer> orderedList = new ArrayList<>(givenList.size());
+        ArrayList<Integer> smallerValues = new ArrayList<>(givenList.size()/2+1);
+        ArrayList<Integer> largerValues = new ArrayList<>(givenList.size()/2+1);
 
+        /*
+         * pick a pivot (first, last, or middle elem)
+         *      if val > pivot
+         *          val -> list of larger values
+         *      if val <= pivot 
+         *          val -> list of smaller values
+         *  repeat until sublist lengths = 1
+         *  merge all sublists today
+        */
+
+        // Split list
+        // Base case
+        if(givenList.size() == 1){
+            orderedList.add(givenList.get(0));
+            return orderedList;
+        } else if(givenList.size() > 1){
+            // Sort elements into 2 sublists
+            pivot = givenList.get(0);
+            for(int i=1; i<givenList.size(); i++){
+                if(givenList.get(i) > pivot){
+                    largerValues.add(givenList.get(i));
+                } else{
+                    smallerValues.add(givenList.get(i));
+                }
+            }
+            // Recursive calls; funnel sublists to recursive calls AND merge returned sublists
+            orderedList.addAll(mergeSort(smallerValues));
+            orderedList.add(pivot);
+            orderedList.addAll(mergeSort(largerValues));
+        }
+        return orderedList;
+    }
+    
+    
+    
+    /*
     public void mergeSortSelect(ArrayList<Integer> givenList, int k){
         //mergeSort(givenList, 0, givenList.size()-1); // may need to 
         // Make copy of givenList so temp list can be changed
@@ -99,6 +148,7 @@ public class selection {
     //     givenList = temp;
     //     //return temp;
     }
+    */
 
 
 
@@ -115,7 +165,7 @@ public class selection {
             // pivot = first element (which changes if the next sublist to focus on is full of smaller or larger values)
             pivot = givenList.get(0);
             if (k==1 && givenList.size() == 1){
-                System.out.println("Kth smallest element: " + pivot);
+                //system.out.println("Kth smallest element: " + pivot);
                 k_found = true;
                 break;
             }
@@ -139,7 +189,7 @@ public class selection {
             pivotIndex = smallerValues.size() + 1;
             
             if(pivotIndex == k){
-                System.out.println("Kth smallest element: " + pivot);
+                //system.out.println("Kth smallest element: " + pivot);
                 k_found = true;
                 break;
             } else if(k>smallerValues.size()){ // k is in list of larger values
@@ -181,7 +231,7 @@ public class selection {
         
         // pivot = first element = kth smallest at the base case
         if(k==1 && givenList.size()==1){
-            System.out.println("Kth smallest element: " + givenList.get(0) + "\n");
+            //system.out.println("Kth smallest element: " + givenList.get(0) + "\n");
             return givenList.get(0);
         } else{
             if(p>-1){
@@ -189,7 +239,7 @@ public class selection {
                 pivot = givenList.get(p);
             } else{
                 pivot = medianOfMedians(givenList);
-                System.out.println("MM pivot: "+pivot);
+                //System.out.println("MM pivot: "+pivot);
             }
             //pivot = givenList.get(0); // pivot = first element
             // sort values into list of smaller values and list of larger values
@@ -207,7 +257,7 @@ public class selection {
             //System.out.println("K: "+k);
             pivotIndex = smallerValues.size() + 1;
             if(pivotIndex == k){
-                System.out.println("Kth smallest element: " + pivot + "\n");
+                //system.out.println("Kth smallest element: " + pivot + "\n");
                 return pivot;
             } else if(k>smallerValues.size()){ // k is in list of larger values
                 //System.out.println("K-size-1: "+(k-smallerValues.size()-1));
@@ -231,7 +281,7 @@ public class selection {
     public int medianOfMedians(ArrayList<Integer> givenList){
         int n = givenList.size();
         int subSize = (int) Math.sqrt(n);
-        System.out.println("subsize: "+subSize);
+        //System.out.println("subsize: "+subSize);
         ArrayList <Integer> subList;
         int subListMidIndex;
         ArrayList <Integer> medians = new ArrayList<Integer>(subSize);
@@ -253,22 +303,22 @@ public class selection {
                 }
             }
 
-            printList(subList,"Sublist "+i);
+            //printList(subList,"Sublist "+i);
             subListMidIndex = (subList.size()+1)/2;
             //System.out.println("Sublist median");
             medians.add(findMedian(subList, subListMidIndex));
         }
         int mediansMidIndex = medians.size()/2;
-        printList(medians, "BIG medians");
+        //printList(medians, "BIG medians");
         int temp = findMedian(medians, mediansMidIndex); //actual mm but not INDEX of mm in givenList
-        System.out.println("Find BIG median return: "+temp);
+        //System.out.println("Find BIG median return: "+temp);
         return temp;
         //return findMedian(medians, mediansMidIndex);
     }
 
     public int findMedian(ArrayList<Integer> subList, int k){
         int temp = recursiveQuickSortSelect(subList, k, 0);
-        System.out.println("SUBLIST median: "+temp);
+        //System.out.println("SUBLIST median: "+temp);
         return temp;
         //return recursiveQuickSortSelect(subList, k, 0);
     }

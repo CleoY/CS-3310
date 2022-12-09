@@ -8,20 +8,20 @@ public class main {
         ArrayList<Integer> tempList = new ArrayList<Integer>();
 
         selection select = new selection();
-        randomList list2 = new randomList(10);
-        list2.printList();
-        int testK = 1;
-        System.out.println("Recursive quick sort: ");
-        select.recursiveQuickSortSelect(list2.getList(), testK, 0);
-        System.out.println("Iterative quick sort: ");
-        select.iterativeQuickSortSelect(list2.getList(), testK);
-        System.out.println("Merge sort: \n");
-        //select.mergeSortSelect(list2.getList(),1);
-        System.out.println("Median of medians sort: ");
-        select.mmSelect(list2.getList(), testK);
+        // randomList list2 = new randomList(10);
+        // list2.printList();
+        // int testK = 2;
+        // System.out.println("Recursive quick sort: ");
+        // select.recursiveQuickSortSelect(list2.getList(), testK, 0);
+        // System.out.println("Iterative quick sort: ");
+        // select.iterativeQuickSortSelect(list2.getList(), testK);
+        // System.out.println("Merge sort: \n");
+        // select.mergeSortSelect(list2.getList(),testK);
+        // System.out.println("Median of medians sort: ");
+        // select.mmSelect(list2.getList(), testK);
         
 
-        /*
+        
         double mergeAvg = 0.0;
         int mergeUseCount = 0;
         double mergeTotalTime = 0.0;
@@ -52,7 +52,7 @@ public class main {
 
         // k = 1, n/4, n/2, 3n/4, n
         // Can try enumerating k or something so I do not need to manually change k and run it many times? //////////
-        int n = 10;
+        int n = 1000;
         int k = 1;
         int count = 1;
         while(count<=5){
@@ -73,7 +73,7 @@ public class main {
                     // Run merge sort algorithm
                     mergeUseCount++;
                     mergeStart = System.nanoTime();
-                    //select.mergeSort(list1, k);
+                    select.mergeSortSelect(list1.getList(), k);
                     // kth_smallest = select.mergeSort(list1, k); // for printing
                     mergeFinish = System.nanoTime();
                     mergeDuration = (mergeFinish - mergeStart) / 1000000;;
@@ -101,7 +101,7 @@ public class main {
                     // Run recursive quick sort algorithm
                     mmUseCount++;
                     mmStart = System.nanoTime();
-                    //select.medianOfMedians(list1, k);
+                    select.mmSelect(list1.getList(), k);
                     // kth_smallest = select.mmSort(list1, k); // for printing
                     mmFinish = System.nanoTime();
                     mmDuration = (mmFinish - mmStart) / 1000000;;
@@ -111,8 +111,8 @@ public class main {
             }
             System.out.println("k: "+k);
             System.out.println("Merge sort avg time for 1000*20 runs: " + mergeAvg + " ms"); 
-            System.out.println("Iter quick sort avg time for 1000*20 runs: " + iterQuickAvg + " ms");
-            System.out.println("Recur quick sort avg time for 1000*20 runs: " + recurQuickAvg + " ms");
+            //System.out.println("Iter quick sort avg time for 1000*20 runs: " + iterQuickAvg + " ms");
+            //System.out.println("Recur quick sort avg time for 1000*20 runs: " + recurQuickAvg + " ms");
             System.out.println("Median of medians avg time for 1000*20 runs: " + mmAvg + " ms");
             System.out.println("");
             count++;
@@ -122,6 +122,6 @@ public class main {
         double duration = finish - start;
         duration /= 1000000;
         //System.out.println("Duration: "+duration+" ms");
-        */
+        
     }
 }
